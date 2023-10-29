@@ -15,6 +15,8 @@ public interface PhoneRepository extends JpaRepository<PhoneEntity, String>{
 @Query(value = "SELECT * FROM PHONE WHERE ID_USER LIKE :id", nativeQuery = true)
  List<PhoneEntity> findByAllIdphone(String id);
 
+
+
 @Transactional
 @Modifying
 @Query(value = "UPDATE PHONE set "

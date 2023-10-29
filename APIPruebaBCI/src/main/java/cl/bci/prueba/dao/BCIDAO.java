@@ -85,7 +85,7 @@ public class BCIDAO {
 		UserEntity userEntity = new UserEntity();
 		userEntity = userRepository.findByEmail(user.getEmail());
 		if(userEntity != null) {
-			 throw  new ErrorEmail("Email ya existe");
+			 throw  new ErrorEmail("El correo ya registrado");
 		}
 
 	}
@@ -145,6 +145,9 @@ public class BCIDAO {
 		return phones ;		
 	}
 	
+
+	
+	
 	public ErrorMessage delete(UserDTO user) {
 		UserEntity userEntity = new UserEntity();
 		userEntity = userRepository.findByEmail(user.getEmail());
@@ -159,12 +162,23 @@ public class BCIDAO {
 	public PruebaResponse update(UserDTO user) {
 		UserEntity userEntity = userRepository.findByEmail(user.getEmail());
 		userRepository.update(user.getName(), user.getEmail(), new Date(System.currentTimeMillis()), userEntity.isIsactive(), userEntity.getId());
-	
+		List<PhoneEntity> phoneEntity = phoneRepository.findByAllIdphone(userEntity.getId());
+		phoneRepository.deleteAll(phoneEntity);
 		
 		for(PhoneDTO phone : user.getPhones()) {
-			phoneRepository.update(phone.getNumber(), phone.getCitycode(), phone.getCountrycode(), userEntity.getId());
+			PhoneEntity newPhoneEntity = 
+					PhoneEntity.builder()
+					.id(UUID.randomUUID().toString())
+					.idUser(userEntity.getId())
+					.number(phone.getNumber())
+					.cityCode(phone.getCitycode())
+					.countryCode(phone.getCountrycode())
+					.build();
+
+			phoneRepository.save(newPhoneEntity);
 
 		}
+		
 		UserEntity userEntityUpadte = userRepository.findByEmail(user.getEmail());	
 		return PruebaResponse.builder()
 				.name(userEntityUpadte.getName())
