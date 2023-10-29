@@ -2,6 +2,7 @@
 
 # PRUEBA JAVA BCI
 ## Evaluación: JAVA - Aplicación RESTFull
+[Ejercicio_JAVA-Especialista_Integracion-BCI.pdf](https://github.com/nlopez21/pruebabci/files/13199139/Ejercicio_JAVA-Especialista_Integracion-BCI.pdf)
 
 # Descripción del requerimiento:
   Se solicita crear una aplicacion tipo RESTfull, para la crearción y mantenimiento de un usuario.
@@ -27,7 +28,15 @@
   - lombok
 
 
-# Diagrama de solución
+# Diagramas
+## Diagrama de base de datos
+![DIA_BD](https://github.com/nlopez21/pruebabci/assets/52576563/60c33731-b17e-4901-b3b0-432800cdefa2)
+
+
+## Diagrama de solución 
+![dia_sol](https://github.com/nlopez21/pruebabci/assets/52576563/e0585a75-8698-46ef-86ca-be8cd608e40f)
+
+
   
   
   
